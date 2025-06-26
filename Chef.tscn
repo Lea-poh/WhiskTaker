@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://ccf6mk03qdle1"]
+
+[ext_resource type="Script" path="res://Chef.gd" id="1_7cs7a"]
+[ext_resource type="Texture2D" uid="uid://dtltdfy1uy6bp" path="res://assets/characters/character_green_front.png" id="2_nv1pt"]
+[ext_resource type="Texture2D" uid="uid://75u0wgsqr2yk" path="res://assets/characters/character_green_idle.png" id="3_7xxvb"]
+[ext_resource type="Texture2D" uid="uid://cf4l1wpar6i2k" path="res://assets/characters/character_green_walk_a.png" id="4_26o0g"]
+[ext_resource type="Texture2D" uid="uid://ccryou2r48h4c" path="res://assets/characters/character_green_walk_b.png" id="5_6cijr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0qfd1"]
+radius = 39.0
+height = 100.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pbdk0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nv1pt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7xxvb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_26o0g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6cijr")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="Chef" type="CharacterBody2D"]
+script = ExtResource("1_7cs7a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -111)
+shape = SubResource("CapsuleShape2D_0qfd1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -126)
+sprite_frames = SubResource("SpriteFrames_pbdk0")
+animation = &"run"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -111)
+limit_left = -1000
+limit_top = -2000
+limit_right = 1000
+limit_bottom = 0
