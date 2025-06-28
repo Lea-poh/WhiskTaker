@@ -52,7 +52,7 @@ shape = SubResource("RectangleShape2D_h8ely")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -31)
 sprite_frames = SubResource("SpriteFrames_c2mmg")
-animation = &"idle"
+animation = &"move"
 
 [node name="GroundCheck" type="RayCast2D" parent="."]
 position = Vector2(-33, 0)

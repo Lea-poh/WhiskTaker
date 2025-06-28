@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dxjccva3bs88c"]
+[gd_scene load_steps=17 format=3 uid="uid://dxjccva3bs88c"]
 
 [ext_resource type="Texture2D" uid="uid://cf5661jtoejbh" path="res://assets/tiles/terrain_grass_block_top.png" id="2_gnlw3"]
 [ext_resource type="Texture2D" uid="uid://cvbslisxfiygg" path="res://assets/tiles/terrain_grass_block_top_left.png" id="3_tuq04"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b4wl26pgpws3i" path="res://IngredientsCupboard.tscn" id="7_gkvfh"]
 [ext_resource type="PackedScene" uid="uid://cg4wsb5ig24se" path="res://Stove.tscn" id="8_4xg18"]
 [ext_resource type="PackedScene" uid="uid://cq85y8q512lt7" path="res://Table.tscn" id="9_0usx5"]
+[ext_resource type="PackedScene" uid="uid://qqqttsrd8v13" path="res://Customer.tscn" id="10_8h2at"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fa6e6"]
 texture = ExtResource("2_gnlw3")
@@ -269,3 +270,6 @@ position = Vector2(-887, -135)
 
 [node name="Table" parent="." instance=ExtResource("9_0usx5")]
 position = Vector2(-756, -124)
+
+[node name="Customer" parent="." instance=ExtResource("10_8h2at")]
+position = Vector2(-254, -98)

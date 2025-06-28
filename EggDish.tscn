@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://c40qewfh6lfk8"]
+
+[ext_resource type="Script" path="res://EggDish.gd" id="1_ky5pj"]
+[ext_resource type="Texture2D" uid="uid://dj0v22ore77eh" path="res://assets/misc/fish_yellow_rest.png" id="2_tbo1h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qilji"]
+size = Vector2(65, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2nqp6"]
+size = Vector2(65, 54)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ky5pj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tbo1h")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_qilji")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_2nqp6")

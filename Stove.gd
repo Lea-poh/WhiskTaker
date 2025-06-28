@@ -1,13 +1,25 @@
 extends Node2D
 
-@export var cook_time := 8.5 # Seconds it takes to cook an egg
+@export var cook_time := 9 # Seconds it takes to cook an egg
+@export var EggDishScene: PackedScene
+
 @onready var cook_sound = $CookSound
+@onready var table = get_node("/root/Main/Table")
+@onready var spawn_points_container: Node2D = get_node("/root/Main/Table/DishSpawnPoints")
 
 var cooking := false
 var cook_timer := 0.0
+var occupied_spots := []
+
+func _on_ready():
+	pass
+
 
 func _on_area_entered(area):
 	if area.is_in_group("player") and not cooking:
+		if table.is_full():
+			print("🛑 Table is full. Cannot start cooking.")
+			return
 		var cupboard = get_node("/root/Main/IngredientsCupboard")
 		if cupboard.egg_count > 0:
 			cupboard.remove_egg()
@@ -30,3 +42,6 @@ func _process(delta):
 			cooking = false
 			$EggTimer.visible = false
 			print("Egg cooked!")
+			var placed = table.spawn_dish()
+			if not placed:
+				print("⚠️ Table is full! Dish not placed.")

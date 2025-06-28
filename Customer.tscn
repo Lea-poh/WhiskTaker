@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://qqqttsrd8v13"]
+
+[ext_resource type="Script" path="res://Customer.gd" id="1_twcuo"]
+[ext_resource type="Texture2D" uid="uid://bvgkqc2u8v8td" path="res://assets/characters/character_beige_idle.png" id="3_7vre5"]
+[ext_resource type="Texture2D" uid="uid://comio17wxqiqu" path="res://assets/characters/character_beige_jump.png" id="4_nbtev"]
+[ext_resource type="Texture2D" uid="uid://dg8gddhflj7kf" path="res://assets/characters/character_beige_walk_a.png" id="5_5n8ms"]
+[ext_resource type="Texture2D" uid="uid://b6deute163js7" path="res://assets/misc/eggtimer_64x64.png" id="6_a3hv4"]
+[ext_resource type="Texture2D" uid="uid://dch7eklrdl8h2" path="res://assets/characters/character_beige_walk_b.png" id="6_nil7j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8ely"]
+size = Vector2(85, 100.5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c2mmg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7vre5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_nbtev")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_5n8ms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nil7j")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Customer" type="CharacterBody2D"]
+position = Vector2(158, -684)
+script = ExtResource("1_twcuo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(9.5, -49.75)
+shape = SubResource("RectangleShape2D_h8ely")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9, -64)
+sprite_frames = SubResource("SpriteFrames_c2mmg")
+animation = &"jump"
+
+[node name="GroundCheck" type="RayCast2D" parent="."]
+position = Vector2(-33, 0)
+target_position = Vector2(2.08165e-12, 20)
+
+[node name="WallCheck" type="RayCast2D" parent="."]
+position = Vector2(1, 0)
+target_position = Vector2(-75, 2.08165e-12)
+
+[node name="WaitBar" type="TextureProgressBar" parent="."]
+offset_left = -23.0
+offset_top = -163.0
+offset_right = 41.0
+offset_bottom = -99.0
+value = 100.0
+fill_mode = 4
+texture_progress = ExtResource("6_a3hv4")
+radial_center_offset = Vector2(2, 3.5)

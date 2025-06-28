@@ -73,4 +73,3 @@ func drop_egg():
 		var egg = EggScene.instantiate()
 		get_parent().add_child(egg)
 		egg.global_position = global_position + Vector2(0, 10)
-

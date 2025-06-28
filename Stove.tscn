@@ -38,6 +38,7 @@ offset_right = 38.0
 offset_bottom = -62.0
 fill_mode = 4
 texture_progress = ExtResource("3_33epc")
+radial_center_offset = Vector2(2, 3.5)
 
 [node name="CookSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_6k0kk")
