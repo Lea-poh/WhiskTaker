@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://cg4wsb5ig24se"]
+
+[ext_resource type="Script" path="res://Stove.gd" id="1_42f1o"]
+[ext_resource type="Texture2D" uid="uid://65v4q1d514xw" path="res://assets/misc/stove.png" id="2_a480f"]
+[ext_resource type="Texture2D" uid="uid://b6deute163js7" path="res://assets/misc/eggtimer_64x64.png" id="3_33epc"]
+[ext_resource type="AudioStream" uid="uid://cg63itmi6hbqh" path="res://assets/sounds/timer_9sec.mp3" id="4_6k0kk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rck0p"]
+size = Vector2(106, 122)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4cod8"]
+size = Vector2(99, 117)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_42f1o")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_rck0p")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_4cod8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_a480f")
+
+[node name="EggTimer" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = -26.0
+offset_top = -126.0
+offset_right = 38.0
+offset_bottom = -62.0
+fill_mode = 4
+texture_progress = ExtResource("3_33epc")
+
+[node name="CookSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6k0kk")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

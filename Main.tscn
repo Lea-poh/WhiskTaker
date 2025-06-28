@@ -1,11 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://dxjccva3bs88c"]
+[gd_scene load_steps=16 format=3 uid="uid://dxjccva3bs88c"]
 
-[ext_resource type="Texture2D" uid="uid://dl6e8aymv0ehp" path="res://assets/tiles/terrain_grass_block_top.png" id="2_gnlw3"]
-[ext_resource type="Texture2D" uid="uid://bqx3t62gss6go" path="res://assets/tiles/terrain_grass_block_top_left.png" id="3_tuq04"]
+[ext_resource type="Texture2D" uid="uid://cf5661jtoejbh" path="res://assets/tiles/terrain_grass_block_top.png" id="2_gnlw3"]
+[ext_resource type="Texture2D" uid="uid://cvbslisxfiygg" path="res://assets/tiles/terrain_grass_block_top_left.png" id="3_tuq04"]
 [ext_resource type="PackedScene" uid="uid://ccf6mk03qdle1" path="res://Chef.tscn" id="4_3aeji"]
-[ext_resource type="Texture2D" uid="uid://hgkoashbosyl" path="res://assets/tiles/terrain_grass_block_top_right.png" id="4_xdx3v"]
+[ext_resource type="Texture2D" uid="uid://df826hybtdvsd" path="res://assets/tiles/terrain_grass_block_top_right.png" id="4_xdx3v"]
 [ext_resource type="Texture2D" uid="uid://jjpabnbb3scs" path="res://assets/backgrounds/background_solid_sky.png" id="5_woqo5"]
 [ext_resource type="PackedScene" uid="uid://oojfi7kigo2" path="res://Chicken.tscn" id="6_g6bnm"]
+[ext_resource type="PackedScene" uid="uid://b4wl26pgpws3i" path="res://IngredientsCupboard.tscn" id="7_gkvfh"]
+[ext_resource type="PackedScene" uid="uid://cg4wsb5ig24se" path="res://Stove.tscn" id="8_4xg18"]
+[ext_resource type="PackedScene" uid="uid://cq85y8q512lt7" path="res://Table.tscn" id="9_0usx5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fa6e6"]
 texture = ExtResource("2_gnlw3")
@@ -256,4 +259,13 @@ position = Vector2(1862, -709.5)
 shape = SubResource("RectangleShape2D_3ga75")
 
 [node name="Chicken" parent="." instance=ExtResource("6_g6bnm")]
-position = Vector2(-213, -622)
+position = Vector2(-155, -92)
+
+[node name="IngredientsCupboard" parent="." instance=ExtResource("7_gkvfh")]
+position = Vector2(-262, -444)
+
+[node name="Stove" parent="." instance=ExtResource("8_4xg18")]
+position = Vector2(-887, -135)
+
+[node name="Table" parent="." instance=ExtResource("9_0usx5")]
+position = Vector2(-756, -124)

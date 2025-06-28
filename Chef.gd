@@ -4,6 +4,12 @@ const SPEED = 400
 const GRAVITY = 700
 const JUMP_FORCE = -500
 
+@onready var cupboard = get_node("/root/Main/IngredientsCupboard")  # Adjust path as needed
+
+func _ready():
+	# Nothing required here for now unless you want debug output
+	pass
+
 func _physics_process(delta):
 	velocity.y += GRAVITY * delta
 
@@ -27,3 +33,7 @@ func _physics_process(delta):
 		$AnimatedSprite2D.play("idle")
 
 	move_and_slide()
+
+func collect_egg(egg):
+	cupboard.add_egg()
+	egg.queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccf6mk03qdle1"]
+[gd_scene load_steps=9 format=3 uid="uid://ccf6mk03qdle1"]
 
 [ext_resource type="Script" path="res://Chef.gd" id="1_7cs7a"]
 [ext_resource type="Texture2D" uid="uid://dtltdfy1uy6bp" path="res://assets/characters/character_green_front.png" id="2_nv1pt"]
@@ -40,7 +40,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Chef" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bwlja"]
+radius = 58.0
+height = 136.0
+
+[node name="Chef" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_7cs7a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -58,3 +62,9 @@ limit_left = -1000
 limit_top = -2000
 limit_right = 1000
 limit_bottom = 0
+
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, -113)
+shape = SubResource("CapsuleShape2D_bwlja")
