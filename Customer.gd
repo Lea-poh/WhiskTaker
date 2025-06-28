@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var jump_cooldown := 1.5  # Seconds between jump attempts
 
 @onready var wait_bar = $WaitBar  # Adjust path if needed
-@export var wait_time := 20 # before customer leaves
+@export var wait_time := 40 # before customer leaves
 var wait_elapsed := 0.0
 
 
@@ -76,3 +76,17 @@ func _physics_process(delta):
 	wait_elapsed += delta
 	var remaining = clamp((wait_time - wait_elapsed) / wait_time, 0.0, 1.0)
 	wait_bar.value = remaining * 100
+
+
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("player"):
+		var chef = area.get_parent()
+		if chef.carried_dish != null:
+			print("🍳 Dish received!")
+			chef.deliver_dish()
+			handle_dish_received()
+
+func handle_dish_received():
+	$AnimatedSprite2D.play("happy")
+	await get_tree().create_timer(2).timeout
+	queue_free()  # Customer leaves

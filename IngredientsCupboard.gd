@@ -19,8 +19,13 @@ func remove_egg():
 	_update_egg_icon()
 
 func update_label():
-	if has_node("Label"):
-		$Label.text = "🥚: " + str(egg_count)
+	if egg_count > 0:
+		$Label.text = str(egg_count) + "x"
+	else:
+		$Label.text = ""
+	
+	# if has_node("Label"):
+	#	$Label.text = str(egg_count) + "x"
 
 func _update_egg_icon():
 	egg_icon.visible = egg_count > 0

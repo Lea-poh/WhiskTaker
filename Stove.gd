@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var cook_time := 9 # Seconds it takes to cook an egg
+@export var cook_time := 8.5 # Seconds it takes to cook an egg
 @export var EggDishScene: PackedScene
 
 @onready var cook_sound = $CookSound

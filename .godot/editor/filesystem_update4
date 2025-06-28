@@ -12,3 +12,7 @@ res://Chicken.gd
 res://Chicken.tscn
 res://Chef.tscn
 res://Customer.gd
+res://IngredientsCupboard.tscn
+res://IngredientsCupboard.gd
+res://Chef.gd
+res://Egg.tscn

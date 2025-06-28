@@ -1,30 +1,31 @@
 [gd_scene load_steps=5 format=3 uid="uid://b4wl26pgpws3i"]
 
 [ext_resource type="Script" path="res://IngredientsCupboard.gd" id="1_ompvs"]
-[ext_resource type="Texture2D" uid="uid://cobxkqq0cvwfc" path="res://assets/misc/block_rest.png" id="2_fqoxu"]
+[ext_resource type="Texture2D" uid="uid://bh1vus7wi14qd" path="res://assets/misc/shelf.png" id="2_dr1ku"]
 [ext_resource type="Texture2D" uid="uid://c7p7fue1sofqj" path="res://assets/misc/egg.png" id="3_pcmw0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_324bl"]
-size = Vector2(64, 64)
+size = Vector2(205, 227)
 
 [node name="IngredientsCupboard" type="Area2D"]
 script = ExtResource("1_ompvs")
 
-[node name="Label" type="Label" parent="."]
-offset_left = 35.0
-offset_top = -31.0
-offset_right = 55.0
-offset_bottom = -8.0
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_324bl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_fqoxu")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_dr1ku")
 
 [node name="Eggs_in_Cb" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-15, -16)
-scale = Vector2(0.02, 0.02)
+position = Vector2(-23, -83)
+scale = Vector2(0.04, 0.04)
 texture = ExtResource("3_pcmw0")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -82.0
+offset_top = -103.0
+offset_right = -47.0
+offset_bottom = -61.0
+theme_override_font_sizes/font_size = 30

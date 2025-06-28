@@ -10,7 +10,6 @@ func _ready():
 var occupied_spots := []
 
 func spawn_dish():
-	print("Try to spawn dish")
 	for spot in spawn_points_container.get_children():
 		if spot.name not in occupied_spots:
 			var dish = EggDishScene.instantiate()
@@ -19,6 +18,7 @@ func spawn_dish():
 			dish.set_spawn_point_name(spot.name)
 			dish.connect("dish_removed", Callable(self, "_on_dish_removed"))
 			occupied_spots.append(spot.name)
+			print("Dish on table!")
 			return true  # success
 	return false  # table full
 
