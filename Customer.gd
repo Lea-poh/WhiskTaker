@@ -76,6 +76,10 @@ func _physics_process(delta):
 	wait_elapsed += delta
 	var remaining = clamp((wait_time - wait_elapsed) / wait_time, 0.0, 1.0)
 	wait_bar.value = remaining * 100
+	
+	if wait_elapsed >= wait_time:
+		print("😠 Customer left unhappy...")
+		leave_unhappy()
 
 
 func _on_area_2d_area_entered(area):
@@ -90,3 +94,8 @@ func handle_dish_received():
 	$AnimatedSprite2D.play("happy")
 	await get_tree().create_timer(2).timeout
 	queue_free()  # Customer leaves
+
+func leave_unhappy():
+	# $AnimatedSprite2D.play("angry")  # Optional: play an "angry" or "leave" animation
+	# await get_tree().create_timer(2).timeout  # Let animation play
+	queue_free()

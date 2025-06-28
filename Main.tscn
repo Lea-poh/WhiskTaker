@@ -270,10 +270,11 @@ position = Vector2(56, -174)
 position = Vector2(-887, -135)
 
 [node name="Table" parent="." instance=ExtResource("9_0usx5")]
-position = Vector2(-756, -124)
+position = Vector2(-744, -113)
 
 [node name="Customer" parent="." instance=ExtResource("10_8h2at")]
 position = Vector2(-254, -98)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_vc8w6")
+autoplay = true
