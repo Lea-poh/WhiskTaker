@@ -17,6 +17,9 @@ var direction := -1  # Start moving left
 var jump_timer := 0.0
 var is_jumping := false
 
+signal happy_leave
+signal unhappy_leave
+
 
 func _ready():
 	randomize()
@@ -91,11 +94,13 @@ func _on_area_2d_area_entered(area):
 			handle_dish_received()
 
 func handle_dish_received():
+	emit_signal("happy_leave")  # Emit signal to notify main scene
 	$AnimatedSprite2D.play("happy")
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1).timeout
 	queue_free()  # Customer leaves
 
 func leave_unhappy():
+	emit_signal("unhappy_leave")
 	# $AnimatedSprite2D.play("angry")  # Optional: play an "angry" or "leave" animation
-	# await get_tree().create_timer(2).timeout  # Let animation play
+	await get_tree().create_timer(1).timeout  # Let animation play
 	queue_free()

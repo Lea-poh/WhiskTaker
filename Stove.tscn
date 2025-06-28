@@ -43,4 +43,11 @@ radial_center_offset = Vector2(2, 3.5)
 [node name="CookSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_6k0kk")
 
+[node name="Label" type="Label" parent="."]
+offset_left = -50.0
+offset_top = -115.0
+offset_right = 55.0
+offset_bottom = -60.0
+theme_override_font_sizes/font_size = 30
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

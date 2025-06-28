@@ -42,34 +42,33 @@ func collect_egg(egg):
 func has_dish() -> bool:
 	return carried_dish != null
 
-func pick_up_dish(dish: Node2D) -> void:
+func pick_up_dish(dish: Node2D):
 	if carried_dish != null:
 		return
 
 	carried_dish = dish
-	var body = dish.get_node("RigidBody2D")
-	var dish_holder = get_node("DishHolder")
 
-	if body:
-		# Correct enum and deferred call
-		body.set_deferred("mode", PhysicsServer2D.BODY_MODE_STATIC)
-		body.set_deferred("gravity_scale", 0)
-		body.set_deferred("linear_velocity", Vector2.ZERO)
-		body.set_deferred("angular_velocity", 0)
-		body.set_deferred("sleeping", true)
+	# Option 1: Remove the RigidBody2D completely
+	var physics_body = dish.get_node_or_null("RigidBody2D")
+	if physics_body:
+		physics_body.queue_free()
 
-	# Reparent after physics changes are scheduled
+	# Reparent dish to holder
+	var holder = $DishHolder
 	if dish.get_parent():
 		dish.get_parent().remove_child(dish)
-	dish_holder.add_child(dish)
+	holder.add_child(dish)
 
-	# Set local position inside DishHolder
-	dish.call_deferred("set_position", Vector2.ZERO)
+	# Snap to position
+	dish.global_position = holder.global_position
+
+	# ⚠️ Call _on_pickup() deferred so it's safe and after physics is cleaned up
+	dish.call_deferred("_on_pickup")
 
 	print("🍽️ Dish picked up!")
 
-
-
+func _deferred_remove_dish(table: Node, spot_name: String):
+	table._on_dish_removed(spot_name)
 
 # Add this to dish.gd (or attach dynamically if you prefer)
 func _set_global_position(pos: Vector2) -> void:

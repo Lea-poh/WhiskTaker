@@ -18,12 +18,21 @@ func _on_ready():
 func _on_area_entered(area):
 	if area.is_in_group("player") and not cooking:
 		if table.is_full():
+			update_label()
 			print("🛑 Table is full. Cannot start cooking.")
 			return
 		var cupboard = get_node("/root/Main/IngredientsCupboard")
 		if cupboard.egg_count > 0:
 			cupboard.remove_egg()
 			start_cooking()
+
+func update_label():
+	if table.is_full():
+		$Label.text = "🛑 Table is full"
+	else:
+		$Label.text = ""
+		
+	
 
 func start_cooking():
 	cooking = true
@@ -34,6 +43,7 @@ func start_cooking():
 	print("Started cooking egg...")
 
 func _process(delta):
+	update_label()
 	if cooking:
 		cook_timer += delta
 		var progress = clamp(cook_timer / cook_time, 0, 1)
@@ -42,6 +52,4 @@ func _process(delta):
 			cooking = false
 			$EggTimer.visible = false
 			print("Egg cooked!")
-			var placed = table.spawn_dish()
-			if not placed:
-				print("⚠️ Table is full! Dish not placed.")
+			table.spawn_dish()
