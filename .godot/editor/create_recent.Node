@@ -1,9 +1,10 @@
-CenterContainer
-Label
-MarginContainer
-Button
+TextureRect
 ColorRect
+Button
+Label
 Panel
+CenterContainer
+MarginContainer
 CanvasLayer
 Node2D
 Timer

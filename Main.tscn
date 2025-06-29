@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dxjccva3bs88c"]
+[gd_scene load_steps=22 format=3 uid="uid://dxjccva3bs88c"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_7crvw"]
 [ext_resource type="Texture2D" uid="uid://cf5661jtoejbh" path="res://assets/tiles/terrain_grass_block_top.png" id="2_gnlw3"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cq85y8q512lt7" path="res://Table.tscn" id="9_0usx5"]
 [ext_resource type="PackedScene" uid="uid://qqqttsrd8v13" path="res://Customer.tscn" id="10_8h2at"]
 [ext_resource type="AudioStream" uid="uid://c7t7w68y0ea3s" path="res://assets/sounds/background_music.mp3" id="11_vc8w6"]
+[ext_resource type="Texture2D" uid="uid://cjeebvkomlqdq" path="res://assets/level_pics/Level_1_720x720.jpeg" id="13_gyibr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fa6e6"]
 texture = ExtResource("2_gnlw3")
@@ -226,6 +227,10 @@ size = Vector2(33, 1823)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ga75"]
 size = Vector2(54, 1787)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o0h2b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_unfyw"]
+
 [node name="Main" type="Node2D" node_paths=PackedStringArray("customer_spawn_point")]
 script = ExtResource("1_7crvw")
 customer_scene = ExtResource("10_8h2at")
@@ -322,13 +327,35 @@ anchor_left = 0.219
 anchor_top = 0.23
 anchor_right = 0.691
 anchor_bottom = 0.57
-offset_left = 10.712
-offset_top = 2.96
-offset_right = 10.9679
-offset_bottom = 10.64
+offset_left = -41.288
+offset_top = -188.04
+offset_right = 134.968
+offset_bottom = 311.64
+
+[node name="StartPicture" type="TextureRect" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("13_gyibr")
+
+[node name="StartButton" type="Button" parent="CanvasLayer/CenterContainer/StartPicture"]
+custom_minimum_size = Vector2(400, 130)
+layout_mode = 0
+offset_left = 173.0
+offset_top = 490.0
+offset_right = 573.0
+offset_bottom = 620.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_o0h2b")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_unfyw")
 
 [node name="FinishBanner" type="Panel" parent="CanvasLayer/CenterContainer"]
+visible = false
 layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/CenterContainer/FinishBanner"]
+offset_left = -426.0
+offset_top = -105.0
+offset_right = 559.0
+offset_bottom = 150.0
+color = Color(0.196078, 0.207843, 1, 1)
 
 [node name="Label" type="Label" parent="CanvasLayer/CenterContainer/FinishBanner"]
 layout_mode = 1
