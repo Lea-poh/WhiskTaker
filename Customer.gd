@@ -81,7 +81,7 @@ func _physics_process(delta):
 	wait_bar.value = remaining * 100
 	
 	if wait_elapsed >= wait_time:
-		print("😠 Customer left unhappy...")
+		#print("😠 Customer left unhappy...")
 		leave_unhappy()
 
 
@@ -89,17 +89,19 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("player"):
 		var chef = area.get_parent()
 		if chef.carried_dish != null:
-			print("🍳 Dish received!")
+			#print("🍳 Dish received!")
 			chef.deliver_dish()
 			handle_dish_received()
 
 func handle_dish_received():
+	print("We got a happy customer!")
 	emit_signal("happy_leave")  # Emit signal to notify main scene
 	$AnimatedSprite2D.play("happy")
 	await get_tree().create_timer(1).timeout
 	queue_free()  # Customer leaves
 
 func leave_unhappy():
+	print("Ohh no, an unhappy customer!")
 	emit_signal("unhappy_leave")
 	# $AnimatedSprite2D.play("angry")  # Optional: play an "angry" or "leave" animation
 	await get_tree().create_timer(1).timeout  # Let animation play

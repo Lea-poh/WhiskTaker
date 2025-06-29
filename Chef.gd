@@ -65,7 +65,7 @@ func pick_up_dish(dish: Node2D):
 	# ⚠️ Call _on_pickup() deferred so it's safe and after physics is cleaned up
 	dish.call_deferred("_on_pickup")
 
-	print("🍽️ Dish picked up!")
+	#print("🍽️ Dish picked up!")
 
 func _deferred_remove_dish(table: Node, spot_name: String):
 	table._on_dish_removed(spot_name)
@@ -102,4 +102,4 @@ func deliver_dish():
 	if carried_dish:
 		carried_dish.queue_free()
 		carried_dish = null
-		print("✅ Dish delivered!")
+		#print("✅ Dish delivered!")

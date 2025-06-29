@@ -1,9 +1,12 @@
+Label
+MarginContainer
+Button
+ColorRect
+Panel
+CanvasLayer
 Node2D
 Timer
-Label
 VBoxContainer
-MarginContainer
-CanvasLayer
 CollisionShape2D
 Area2D
 AudioStreamPlayer

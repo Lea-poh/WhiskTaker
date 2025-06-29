@@ -31,7 +31,7 @@ func spawn_dish():
 	dish.global_position = spawn_point.global_position
 	
 	dish.connect("dish_removed", Callable(self, "_on_dish_removed"))
-	print("Connected dish_removed signal for:", dish.name)
+	#print("Connected dish_removed signal for:", dish.name)
 
 
 
@@ -42,10 +42,10 @@ func is_full() -> bool:
 	return true  # all occupied
 
 func _on_dish_removed(spot_name: String) -> void:
-	print("Table received dish_removed signal for:", spot_name)
+	#print("Table received dish_removed signal for:", spot_name)
 	for spawn_point in spawn_points_container.get_children():
 		if spawn_point.name == spot_name:
 			spawn_point.set_meta("occupied", false)
-			print("Spawn point freed:", spot_name)
+			#print("Spawn point freed:", spot_name)
 			break
 

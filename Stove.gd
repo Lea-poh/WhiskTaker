@@ -40,7 +40,7 @@ func start_cooking():
 	$EggTimer.visible = true
 	$EggTimer.value = 0
 	cook_sound.play()
-	print("Started cooking egg...")
+	#print("Started cooking egg...")
 
 func _process(delta):
 	update_label()
@@ -51,5 +51,5 @@ func _process(delta):
 		if cook_timer >= cook_time:
 			cooking = false
 			$EggTimer.visible = false
-			print("Egg cooked!")
+			# print("Egg cooked!")
 			table.spawn_dish()

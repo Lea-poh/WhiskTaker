@@ -8,13 +8,13 @@ func _ready():
 
 func add_egg():
 	egg_count += 1
-	print("🥚 Egg stored! Total:", egg_count)
+	#print("🥚 Egg stored! Total:", egg_count)
 	update_label()
 	_update_egg_icon()
 	
 func remove_egg():
 	egg_count = max(egg_count - 1, 0)
-	print("🥚 Egg removed! Total:", egg_count)
+	#print("🥚 Egg removed! Total:", egg_count)
 	update_label()
 	_update_egg_icon()
 

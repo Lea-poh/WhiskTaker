@@ -1,26 +1,37 @@
 extends Node2D
 
-@onready var happy_label = $CanvasLayer/MarginContainer/VBoxContainer/HappyLabel
-@onready var unhappy_label = $CanvasLayer/MarginContainer/VBoxContainer/UnhappyLabel
+@onready var happy_label = $CanvasLayer/ScoreContainer/VBoxContainer/HappyLabel
+@onready var unhappy_label = $CanvasLayer/ScoreContainer/VBoxContainer/UnhappyLabel
+@onready var finish_label = $CanvasLayer/FinishBanner/Label
+@onready var restart_button = $CanvasLayer/FinishBanner.get_node("RestartButton")
+@onready var next_level_button = $CanvasLayer/FinishBanner.get_node("NextLevelButton")
+@onready var timer_label = $CanvasLayer/TimerContainer/TimerLabel
 
 @export var customer_scene: PackedScene  # Assign in Inspector
 @export var customer_spawn_point: Node2D  # Assign in Inspector
 
+var game_end_customers := 1
+var game_active := true
 var happy_customers := 0
 var unhappy_customers := 0
+var elapsed_time := 0.0
+
 
 func _ready():
-	# Start spawning customers every 20 seconds
-	var timer = Timer.new()
-	timer.wait_time = 20
-	timer.autostart = true
-	timer.one_shot = false
-	add_child(timer)
-	timer.connect("timeout", Callable(self, "_spawn_customer"))
+	# Spawn the firt customer immediately
+	_spawn_customer()
 
 	# Initialize UI
 	update_labels()
+	
+	restart_button.connect("pressed", Callable(self, "_on_restart_pressed"))
+	next_level_button.connect("pressed", Callable(self, "_on_next_level_pressed"))
 
+func _process(delta):
+	if game_active:
+		elapsed_time += delta
+		timer_label.text = "⏱️ %.1f" % elapsed_time
+	
 func _spawn_customer():
 	var customer = customer_scene.instantiate()
 	customer.global_position = customer_spawn_point.global_position
@@ -31,8 +42,9 @@ func _spawn_customer():
 	customer.connect("unhappy_leave", Callable(self, "_on_customer_unhappy_leave"))
 
 func _on_customer_happy_leave():
+	print("Received happy leave!")
 	increment_happy()
-	if happy_customers >= 5:
+	if happy_customers >= game_end_customers:
 		level_finished()
 
 func _on_customer_unhappy_leave():
@@ -51,5 +63,16 @@ func update_labels():
 	unhappy_label.text = "😠 Unhappy: %d" % unhappy_customers
 
 func level_finished():
-	print("🎉 Level completed with 5 happy customers!")
-	# Add whatever you want here to finish the level, show message, etc.
+	print("🎉 Level completed in %d seconds!" % elapsed_time)
+	game_active = false
+	$CanvasLayer/FinishBanner.visible = true
+	finish_label.text = "🎉 Level Complete! 🎉 \n Level finished in %ds!" % elapsed_time 
+	
+func _on_restart_pressed():
+	print("Restarting level...")
+	get_tree().reload_current_scene()
+	
+func _on_next_level_pressed():
+	print("Loading next level...")
+	# Replace "res://path_to_next_level.tscn" with your actual next level path
+	#get_tree().change_scene("res://path_to_next_level.tscn")
