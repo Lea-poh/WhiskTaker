@@ -2,9 +2,9 @@ extends Node2D
 
 @onready var happy_label = $CanvasLayer/ScoreContainer/VBoxContainer/HappyLabel
 @onready var unhappy_label = $CanvasLayer/ScoreContainer/VBoxContainer/UnhappyLabel
-@onready var finish_label = $CanvasLayer/FinishBanner/Label
-@onready var restart_button = $CanvasLayer/FinishBanner.get_node("RestartButton")
-@onready var next_level_button = $CanvasLayer/FinishBanner.get_node("NextLevelButton")
+@onready var finish_label = $CanvasLayer/CenterContainer/FinishBanner/Label
+@onready var restart_button = $CanvasLayer/CenterContainer/FinishBanner.get_node("RestartButton")
+@onready var next_level_button = $CanvasLayer/CenterContainer/FinishBanner.get_node("NextLevelButton")
 @onready var timer_label = $CanvasLayer/TimerContainer/TimerLabel
 
 @export var customer_scene: PackedScene  # Assign in Inspector
@@ -59,13 +59,13 @@ func increment_unhappy():
 	update_labels()
 
 func update_labels():
-	happy_label.text = "😊 Happy: %d" % happy_customers
-	unhappy_label.text = "😠 Unhappy: %d" % unhappy_customers
+	happy_label.text = "😊  %d" % happy_customers
+	unhappy_label.text = "😡  %d" % unhappy_customers
 
 func level_finished():
 	print("🎉 Level completed in %d seconds!" % elapsed_time)
 	game_active = false
-	$CanvasLayer/FinishBanner.visible = true
+	$CanvasLayer/CenterContainer/FinishBanner.visible = true
 	finish_label.text = "🎉 Level Complete! 🎉 \n Level finished in %ds!" % elapsed_time 
 	
 func _on_restart_pressed():
