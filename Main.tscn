@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dxjccva3bs88c"]
+[gd_scene load_steps=23 format=3 uid="uid://dxjccva3bs88c"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_7crvw"]
 [ext_resource type="Texture2D" uid="uid://cf5661jtoejbh" path="res://assets/tiles/terrain_grass_block_top.png" id="2_gnlw3"]
@@ -231,6 +231,8 @@ size = Vector2(54, 1787)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_unfyw"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g1wml"]
+
 [node name="Main" type="Node2D" node_paths=PackedStringArray("customer_spawn_point")]
 script = ExtResource("1_7crvw")
 customer_scene = ExtResource("10_8h2at")
@@ -345,6 +347,7 @@ offset_right = 573.0
 offset_bottom = 620.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_o0h2b")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_unfyw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_g1wml")
 
 [node name="FinishBanner" type="Panel" parent="CanvasLayer/CenterContainer"]
 visible = false
