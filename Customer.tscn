@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://qqqttsrd8v13"]
+[gd_scene load_steps=12 format=3 uid="uid://qqqttsrd8v13"]
 
 [ext_resource type="Script" path="res://Customer.gd" id="1_twcuo"]
-[ext_resource type="Texture2D" uid="uid://bgalsdvwrfbv0" path="res://assets/characters/happy.png" id="2_nviwv"]
+[ext_resource type="Texture2D" uid="uid://d15mcgan7d8i5" path="res://assets/characters/happy_customer.png" id="2_w4woi"]
 [ext_resource type="Texture2D" uid="uid://bvgkqc2u8v8td" path="res://assets/characters/character_beige_idle.png" id="3_7vre5"]
 [ext_resource type="Texture2D" uid="uid://comio17wxqiqu" path="res://assets/characters/character_beige_jump.png" id="4_nbtev"]
 [ext_resource type="Texture2D" uid="uid://dg8gddhflj7kf" path="res://assets/characters/character_beige_walk_a.png" id="5_5n8ms"]
+[ext_resource type="Texture2D" uid="uid://mymxek6peuuf" path="res://assets/characters/unhappy_customer.png" id="5_5qhsq"]
 [ext_resource type="Texture2D" uid="uid://b6deute163js7" path="res://assets/misc/eggtimer_64x64.png" id="6_a3hv4"]
 [ext_resource type="Texture2D" uid="uid://dch7eklrdl8h2" path="res://assets/characters/character_beige_walk_b.png" id="6_nil7j"]
 
@@ -15,7 +16,7 @@ size = Vector2(85, 100.5)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_nviwv")
+"texture": ExtResource("2_w4woi")
 }],
 "loop": true,
 "name": &"happy",
@@ -35,6 +36,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_5qhsq")
+}],
+"loop": true,
+"name": &"unhappy",
 "speed": 5.0
 }, {
 "frames": [{

@@ -16,6 +16,7 @@ var wait_elapsed := 0.0
 var direction := -1  # Start moving left
 var jump_timer := 0.0
 var is_jumping := false
+var has_left := false 
 
 signal happy_leave
 signal unhappy_leave
@@ -25,6 +26,9 @@ func _ready():
 	randomize()
 
 func _physics_process(delta):
+	if has_left:
+		return
+	
 	# Apply gravity
 	velocity.y += gravity * delta
 
@@ -79,7 +83,6 @@ func _physics_process(delta):
 	wait_elapsed += delta
 	var remaining = clamp((wait_time - wait_elapsed) / wait_time, 0.0, 1.0)
 	wait_bar.value = remaining * 100
-	
 	if wait_elapsed >= wait_time:
 		#print("😠 Customer left unhappy...")
 		leave_unhappy()
@@ -101,8 +104,13 @@ func handle_dish_received():
 	queue_free()  # Customer leaves
 
 func leave_unhappy():
-	print("Ohh no, an unhappy customer!")
+	if has_left:
+		return
+	has_left = true
+
+	# Play animation, delay removal, etc.
+	$AnimationPlayer.play("unhappy")
+
+	await get_tree().create_timer(1.0).timeout
 	emit_signal("unhappy_leave")
-	# $AnimatedSprite2D.play("angry")  # Optional: play an "angry" or "leave" animation
-	await get_tree().create_timer(1).timeout  # Let animation play
 	queue_free()

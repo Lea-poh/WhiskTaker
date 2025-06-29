@@ -1,6 +1,5 @@
 extends Node2D
 
-@export var cook_time := 8.5 # Seconds it takes to cook an egg
 @export var EggDishScene: PackedScene
 
 @onready var cook_sound = $CookSound
@@ -46,10 +45,11 @@ func _process(delta):
 	update_label()
 	if cooking:
 		cook_timer += delta
+		var cook_time = cook_sound.stream.get_length() - 1.7
 		var progress = clamp(cook_timer / cook_time, 0, 1)
 		$EggTimer.value = progress * 100
 		if cook_timer >= cook_time:
 			cooking = false
 			$EggTimer.visible = false
-			# print("Egg cooked!")
+			print("Egg cooked!")
 			table.spawn_dish()

@@ -302,6 +302,7 @@ theme_override_font_sizes/font_size = 40
 text = "😠 Unhappy: 0"
 
 [node name="FinishBanner" type="Panel" parent="CanvasLayer"]
+visible = false
 offset_left = 83.0
 offset_top = 142.0
 offset_right = 1112.0
