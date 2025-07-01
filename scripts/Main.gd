@@ -1,12 +1,13 @@
 extends Node2D
 
 @export var level_paths := [
-	"res://level_1.tscn",
-	"res://level_2.tscn",
+	"res://scenes/level_1.tscn",
+	"res://scenes/level_2.tscn",
 	#"res://Level3.tscn"
 ]
 
 var current_level_index := 0
+var game_end_customers := 5
 
 @onready var start_pic = $CanvasLayer/CenterContainer/StartPicture
 @onready var start_button = start_pic.get_node("StartButton")  # Adjust path if needed
@@ -19,7 +20,6 @@ var current_level_index := 0
 
 @export var customer_scene: PackedScene  # Assign in Inspector
 
-var game_end_customers := 1
 var game_active := false  # Don't start until button is pressed
 var happy_customers := 0
 var unhappy_customers := 0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cg4wsb5ig24se"]
 
-[ext_resource type="Script" path="res://Stove.gd" id="1_42f1o"]
+[ext_resource type="Script" path="res://scripts/Stove.gd" id="1_42f1o"]
 [ext_resource type="Texture2D" uid="uid://65v4q1d514xw" path="res://assets/misc/stove.png" id="2_a480f"]
 [ext_resource type="Texture2D" uid="uid://b6deute163js7" path="res://assets/misc/eggtimer_64x64.png" id="3_33epc"]
 [ext_resource type="AudioStream" uid="uid://cg63itmi6hbqh" path="res://assets/sounds/timer_9sec.mp3" id="4_6k0kk"]

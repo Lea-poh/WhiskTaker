@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c6c6cjxa6dx68"]
 
-[ext_resource type="Script" path="res://Egg.gd" id="1_j4x7q"]
+[ext_resource type="Script" path="res://scripts/Egg.gd" id="1_j4x7q"]
 [ext_resource type="Texture2D" uid="uid://c7p7fue1sofqj" path="res://assets/misc/egg.png" id="2_h2bvm"]
 [ext_resource type="Texture2D" uid="uid://bmo7ycs5nxhdc" path="res://assets/misc/egg_down.png" id="3_krxb7"]
 [ext_resource type="AudioStream" uid="uid://r6sw2ep8cydq" path="res://assets/sounds/sfx_coin.ogg" id="4_y6p7n"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c40qewfh6lfk8"]
 
-[ext_resource type="Script" path="res://EggDish.gd" id="1_ky5pj"]
+[ext_resource type="Script" path="res://scripts/EggDish.gd" id="1_ky5pj"]
 [ext_resource type="Texture2D" uid="uid://dj0v22ore77eh" path="res://assets/misc/fish_yellow_rest.png" id="2_tbo1h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qilji"]
