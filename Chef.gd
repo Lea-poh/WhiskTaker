@@ -4,12 +4,12 @@ const SPEED = 400
 const GRAVITY = 700
 const JUMP_FORCE = -500
 var carried_dish = null
-
-@onready var cupboard = get_node("/root/Main/IngredientsCupboard")  # Adjust path as needed
+var cupboard: Node
 
 func _ready():
-	# Nothing required here for now unless you want debug output
-	pass
+	cupboard = get_parent().get_node_or_null("IngredientsCupboard")
+	if cupboard == null:
+		print("❌ Couldn't find IngredientsCupboard")
 
 func _physics_process(delta):
 	velocity.y += GRAVITY * delta

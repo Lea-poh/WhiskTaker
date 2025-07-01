@@ -1,5 +1,13 @@
 extends Node2D
 
+@export var level_paths := [
+	"res://level_1.tscn",
+	"res://level_2.tscn",
+	#"res://Level3.tscn"
+]
+
+var current_level_index := 0
+
 @onready var start_pic = $CanvasLayer/CenterContainer/StartPicture
 @onready var start_button = start_pic.get_node("StartButton")  # Adjust path if needed
 @onready var happy_label = $CanvasLayer/ScoreContainer/VBoxContainer/HappyLabel
@@ -10,8 +18,6 @@ extends Node2D
 @onready var timer_label = $CanvasLayer/TimerContainer/TimerLabel
 
 @export var customer_scene: PackedScene  # Assign in Inspector
-@export var customer_spawn_point: Node2D  # Assign in Inspector
-
 
 var game_end_customers := 1
 var game_active := false  # Don't start until button is pressed
@@ -19,8 +25,11 @@ var happy_customers := 0
 var unhappy_customers := 0
 var elapsed_time := 0.0
 
+var current_level: Node
+var customer_spawn_point: Node2D
 
 func _ready():
+	_load_level()
 	# Connect the Start button
 	start_button.connect("pressed", Callable(self, "_on_start_pressed"))	
 	restart_button.connect("pressed", Callable(self, "_on_restart_pressed"))
@@ -30,17 +39,37 @@ func _process(delta):
 	if game_active:
 		elapsed_time += delta
 		timer_label.text = "⏱️ %.1f" % elapsed_time
+		
+func _load_level():
+	# Remove previous level if any
+	if current_level:
+		current_level.queue_free()
+
+	var level_scene = load(level_paths[current_level_index])
+	current_level = level_scene.instantiate()
+	add_child(current_level)
+
+
 
 func _on_start_pressed():
 	start_pic.visible = false
 	game_active = true
+	print("current level is ", current_level)
+	customer_spawn_point = current_level.get_node_or_null("CustomerSpawnPoint")
+	
+	if not customer_spawn_point:
+		print("❌ Couldn't find CustomerSpawnPoint in the current level")
+		return
 	_spawn_customer()
+	happy_label.visible = true
+	unhappy_label.visible = true
+	timer_label.visible = true
 	update_labels()
 
 func _spawn_customer():
 	var customer = customer_scene.instantiate()
 	customer.global_position = customer_spawn_point.global_position
-	add_child(customer)
+	current_level.add_child(customer)
 	
 	# Connect signals for happy and unhappy customers
 	customer.connect("happy_leave", Callable(self, "_on_customer_happy_leave"))

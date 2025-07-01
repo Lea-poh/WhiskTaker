@@ -3,12 +3,24 @@ extends Node2D
 @export var EggDishScene: PackedScene
 
 @onready var cook_sound = $CookSound
-@onready var table = get_node("/root/Main/Table")
-@onready var spawn_points_container: Node2D = get_node("/root/Main/Table/DishSpawnPoints")
+
 
 var cooking := false
 var cook_timer := 0.0
 var occupied_spots := []
+var table: Node
+var cupboard: Node2D
+var spawn_points_container: Node2D
+
+func _ready():
+	table = get_parent().get_node_or_null("Table")
+	if table == null:
+		print("❌ Couldn't find Table")
+	spawn_points_container = table.get_node_or_null("DishSpawnPoints")
+	if spawn_points_container == null:
+		print("❌ Couldn't find DishSpawnPoints")
+
+
 
 func _on_ready():
 	pass
@@ -20,7 +32,9 @@ func _on_area_entered(area):
 			update_label()
 			print("🛑 Table is full. Cannot start cooking.")
 			return
-		var cupboard = get_node("/root/Main/IngredientsCupboard")
+		cupboard = get_parent().get_node_or_null("IngredientsCupboard")
+		if spawn_points_container == null:
+			print("❌ Couldn't find IngredientsCupboard in Stove")
 		if cupboard.egg_count > 0:
 			cupboard.remove_egg()
 			start_cooking()
