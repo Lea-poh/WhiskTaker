@@ -8,3 +8,4 @@ res://scenes/IngredientsCupboard.tscn
 res://scenes/Stove.tscn
 res://scenes/Table.tscn
 res://scripts/Main.gd
+res://scripts/Chef.gd

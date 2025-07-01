@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
-const SPEED = 400
-const GRAVITY = 700
+const SPEED = 500
+const GRAVITY = 1000
 const JUMP_FORCE = -500
 var carried_dish = null
 var cupboard: Node
+var has_jumped_in_air = false
+var delta_since_on_ground = 0 
 
 func _ready():
 	cupboard = get_parent().get_node_or_null("IngredientsCupboard")
@@ -20,10 +22,21 @@ func _physics_process(delta):
 	# Flip sprite if needed
 	if direction != 0:
 		$AnimatedSprite2D.flip_h = direction < 0
+		
+	if is_on_floor():
+		delta_since_on_ground = 0
+		has_jumped_in_air = false
+	else:
+		delta_since_on_ground += delta
 
 	# Jumping
-	if is_on_floor() and Input.is_action_just_pressed("ui_accept"):
-		velocity.y = JUMP_FORCE
+	if Input.is_action_just_pressed("ui_accept"):
+		if delta_since_on_ground < 0.5:
+			velocity.y = JUMP_FORCE
+			delta_since_on_ground = 0.5
+		elif not has_jumped_in_air:
+			velocity.y = JUMP_FORCE
+			has_jumped_in_air = true
 
 	# Animation switching
 	if not is_on_floor():

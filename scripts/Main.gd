@@ -34,6 +34,13 @@ func _ready():
 	start_button.connect("pressed", Callable(self, "_on_start_pressed"))	
 	restart_button.connect("pressed", Callable(self, "_on_restart_pressed"))
 	next_level_button.connect("pressed", Callable(self, "_on_next_level_pressed"))
+	var timer = Timer.new()
+	timer.wait_time = 20
+	timer.autostart = true
+	timer.one_shot = false
+	add_child(timer)
+	timer.connect("timeout",Callable(self,"_spawn_customer"))
+	
 
 func _process(delta):
 	if game_active:
@@ -48,7 +55,6 @@ func _load_level():
 	var level_scene = load(level_paths[current_level_index])
 	current_level = level_scene.instantiate()
 	add_child(current_level)
-
 
 
 func _on_start_pressed():
