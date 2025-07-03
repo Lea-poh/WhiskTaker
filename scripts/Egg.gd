@@ -10,7 +10,7 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("player"):
 		# print("✅ It's the player!")
 		var cupboard = get_parent().get_node("IngredientsCupboard")
-		cupboard.add_egg()
+		cupboard.add_ingredient("egg")
 		$EggPickupSound.play()
 		await $EggPickupSound.finished
 		queue_free()

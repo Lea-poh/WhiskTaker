@@ -35,8 +35,8 @@ func _on_area_entered(area):
 		cupboard = get_parent().get_node_or_null("IngredientsCupboard")
 		if spawn_points_container == null:
 			print("❌ Couldn't find IngredientsCupboard in Stove")
-		if cupboard.egg_count > 0:
-			cupboard.remove_egg()
+		if cupboard.get_count("egg") > 0:
+			cupboard.remove_ingredient("egg")
 			start_cooking()
 
 func update_label():
@@ -50,8 +50,8 @@ func update_label():
 func start_cooking():
 	cooking = true
 	cook_timer = 0.0
-	$EggTimer.visible = true
-	$EggTimer.value = 0
+	$CookTimer.visible = true
+	$CookTimer.value = 0
 	cook_sound.play()
 	#print("Started cooking egg...")
 
@@ -61,9 +61,9 @@ func _process(delta):
 		cook_timer += delta
 		var cook_time = cook_sound.stream.get_length() - 1.7
 		var progress = clamp(cook_timer / cook_time, 0, 1)
-		$EggTimer.value = progress * 100
+		$CookTimer.value = progress * 100
 		if cook_timer >= cook_time:
 			cooking = false
-			$EggTimer.visible = false
+			$CookTimer.visible = false
 			print("Egg cooked!")
-			table.spawn_dish()
+			table.spawn_dish(preload("res://scenes/EggDish.tscn"))

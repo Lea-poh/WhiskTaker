@@ -1,15 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cq85y8q512lt7"]
+[gd_scene load_steps=4 format=3 uid="uid://cq85y8q512lt7"]
 
 [ext_resource type="Script" path="res://scripts/Table.gd" id="1_bhis8"]
 [ext_resource type="Texture2D" uid="uid://dvejm8grkomgj" path="res://assets/misc/table.png" id="1_c7f1e"]
-[ext_resource type="PackedScene" uid="uid://c40qewfh6lfk8" path="res://scenes/EggDish.tscn" id="2_64egb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xeqxq"]
 size = Vector2(136, 73)
 
 [node name="Table" type="Node2D"]
 script = ExtResource("1_bhis8")
-EggDishScene = ExtResource("2_64egb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.56, 0.56)

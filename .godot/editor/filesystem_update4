@@ -9,3 +9,16 @@ res://scenes/Stove.tscn
 res://scenes/Table.tscn
 res://scripts/Main.gd
 res://scripts/Chef.gd
+res://scenes/level_2.tscn
+res://scripts/IngredientsCupboard.gd
+res://scenes/level_1.tscn
+res://scripts/Egg.gd
+res://scripts/Customer.gd
+res://scripts/Stove.gd
+res://scripts/Table.gd
+res://scenes/SaladDish.tscn
+res://scenes/Saladbar.tscn
+res://scripts/Saladbar.gd
+res://scripts/level_1.gd
+res://scripts/level_2.gd
+res://scripts/Dish.gd

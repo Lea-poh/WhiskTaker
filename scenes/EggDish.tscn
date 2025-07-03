@@ -1,30 +1,32 @@
 [gd_scene load_steps=5 format=3 uid="uid://c40qewfh6lfk8"]
 
-[ext_resource type="Script" path="res://scripts/EggDish.gd" id="1_ky5pj"]
-[ext_resource type="Texture2D" uid="uid://dj0v22ore77eh" path="res://assets/misc/fish_yellow_rest.png" id="2_tbo1h"]
+[ext_resource type="Script" path="res://scripts/Dish.gd" id="1_e5ugo"]
+[ext_resource type="Texture2D" uid="uid://ca7ux8jbapu7t" path="res://assets/misc/EggDish.png" id="2_43phw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qilji"]
-size = Vector2(65, 54)
+size = Vector2(65, 39)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2nqp6"]
-size = Vector2(65, 54)
+size = Vector2(65, 39)
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_ky5pj")
+script = ExtResource("1_e5ugo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_tbo1h")
+position = Vector2(0.999996, 8)
+scale = Vector2(0.0619934, 0.0619934)
+texture = ExtResource("2_43phw")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(0.5, 0)
+position = Vector2(0.5, 7.5)
 shape = SubResource("RectangleShape2D_qilji")
 
 [node name="Area2D" type="Area2D" parent="RigidBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D"]
-position = Vector2(0.5, 0)
+position = Vector2(0.5, 7.5)
 shape = SubResource("RectangleShape2D_2nqp6")
 
 [connection signal="area_entered" from="RigidBody2D/Area2D" to="." method="_on_area_2d_area_entered"]

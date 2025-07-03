@@ -1,8 +1,9 @@
+Label
+Sprite2D
 Node2D
 TextureRect
 ColorRect
 Button
-Label
 Panel
 CenterContainer
 MarginContainer
@@ -11,4 +12,3 @@ Timer
 VBoxContainer
 CollisionShape2D
 Area2D
-AudioStreamPlayer

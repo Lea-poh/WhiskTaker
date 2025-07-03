@@ -1,13 +1,14 @@
 extends Node2D
 
 @export var level_paths := [
-	"res://scenes/level_1.tscn",
+	#"res://scenes/level_1.tscn",
 	"res://scenes/level_2.tscn",
 	#"res://Level3.tscn"
 ]
 
 var current_level_index := 0
 var game_end_customers := 5
+var customer_dish_types: Array[String] = []
 
 @onready var start_pic = $CanvasLayer/CenterContainer/StartPicture
 @onready var start_button = start_pic.get_node("StartButton")  # Adjust path if needed
@@ -30,6 +31,7 @@ var customer_spawn_point: Node2D
 
 func _ready():
 	_load_level()
+	randomize()
 	# Connect the Start button
 	start_button.connect("pressed", Callable(self, "_on_start_pressed"))	
 	restart_button.connect("pressed", Callable(self, "_on_restart_pressed"))
@@ -55,6 +57,8 @@ func _load_level():
 	var level_scene = load(level_paths[current_level_index])
 	current_level = level_scene.instantiate()
 	add_child(current_level)
+	
+	customer_dish_types = current_level.customer_dishes
 
 
 func _on_start_pressed():
@@ -76,6 +80,10 @@ func _spawn_customer():
 	var customer = customer_scene.instantiate()
 	customer.global_position = customer_spawn_point.global_position
 	current_level.add_child(customer)
+	
+	# Randomly assign a dish
+	var dish = customer_dish_types[randi() % customer_dish_types.size()]
+	customer.set_desired_dish(dish)
 	
 	# Connect signals for happy and unhappy customers
 	customer.connect("happy_leave", Callable(self, "_on_customer_happy_leave"))

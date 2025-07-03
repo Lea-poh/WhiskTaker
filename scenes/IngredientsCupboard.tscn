@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4wl26pgpws3i"]
+[gd_scene load_steps=7 format=3 uid="uid://b4wl26pgpws3i"]
 
 [ext_resource type="Script" path="res://scripts/IngredientsCupboard.gd" id="1_ompvs"]
 [ext_resource type="Texture2D" uid="uid://bh1vus7wi14qd" path="res://assets/misc/shelf.png" id="2_dr1ku"]
 [ext_resource type="Texture2D" uid="uid://c7p7fue1sofqj" path="res://assets/misc/egg.png" id="3_pcmw0"]
+[ext_resource type="Texture2D" uid="uid://y55eagshwlco" path="res://assets/misc/tomato_64x64.png" id="4_xfeg2"]
+[ext_resource type="Texture2D" uid="uid://bp4huisoc67ia" path="res://assets/misc/lettuce_64x64.png" id="5_h0dli"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_324bl"]
 size = Vector2(205, 227)
@@ -18,14 +20,37 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_dr1ku")
 
 [node name="Eggs_in_Cb" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-23, -83)
-scale = Vector2(0.04, 0.04)
+position = Vector2(-25, -81)
+scale = Vector2(0.0307031, 0.0307031)
 texture = ExtResource("3_pcmw0")
 
-[node name="Label" type="Label" parent="."]
+[node name="EggLabel" type="Label" parent="."]
 offset_left = -82.0
 offset_top = -103.0
 offset_right = -47.0
 offset_bottom = -61.0
+theme_override_font_sizes/font_size = 30
+
+[node name="Tomatoes_in_Cb" type="Sprite2D" parent="."]
+position = Vector2(-23, -31)
+scale = Vector2(0.71875, 0.71875)
+texture = ExtResource("4_xfeg2")
+
+[node name="TomatoLabel" type="Label" parent="."]
+offset_left = -82.0
+offset_top = -54.0
+offset_right = -42.0
+offset_bottom = -12.0
+theme_override_font_sizes/font_size = 30
+
+[node name="Lettuce_in_Cb" type="Sprite2D" parent="."]
+position = Vector2(65, -32)
+scale = Vector2(0.578125, 0.578125)
+texture = ExtResource("5_h0dli")
+
+[node name="LettuceLabel" type="Label" parent="."]
+offset_left = 14.0
+offset_top = -54.0
+offset_right = 47.0
+offset_bottom = -12.0
 theme_override_font_sizes/font_size = 30

@@ -12,11 +12,17 @@ extends CharacterBody2D
 @export var wait_time := 40 # before customer leaves
 var wait_elapsed := 0.0
 
+var desired_dish: String = ""
 
 var direction := -1  # Start moving left
 var jump_timer := 0.0
 var is_jumping := false
 var has_left := false 
+
+var dish_progress_textures := {
+	"egg": preload("res://assets/misc/eggtimer_64x64.png"),
+	"salad": preload("res://assets/misc/SaladDish.png")
+}
 
 signal happy_leave
 signal unhappy_leave
@@ -92,14 +98,25 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("player"):
 		var chef = area.get_parent()
 		if chef.carried_dish != null:
-			#print("🍳 Dish received!")
+			print("Dish ", chef.carried_dish.dish_type," received!")
+			handle_dish_received(chef.carried_dish.dish_type)
 			chef.deliver_dish()
-			handle_dish_received()
+			
 
-func handle_dish_received():
-	print("We got a happy customer!")
-	emit_signal("happy_leave")  # Emit signal to notify main scene
-	$AnimatedSprite2D.play("happy")
+func set_desired_dish(dish: String):
+	desired_dish = dish
+
+	if dish in dish_progress_textures:
+		wait_bar.texture_progress = dish_progress_textures[dish]
+	else:
+		wait_bar.texture_progress = null  # or fallback texture
+
+func handle_dish_received(dish_type: String):
+	if dish_type == desired_dish:
+		print("We got a happy customer!")
+		emit_signal("happy_leave")
+	else:
+		emit_signal("unhappy_leave")
 	await get_tree().create_timer(1).timeout
 	queue_free()  # Customer leaves
 
@@ -109,7 +126,7 @@ func leave_unhappy():
 	has_left = true
 
 	# Play animation, delay removal, etc.
-	$AnimationPlayer.play("unhappy")
+	#$AnimationPlayer.play("unhappy")
 
 	await get_tree().create_timer(1.0).timeout
 	emit_signal("unhappy_leave")

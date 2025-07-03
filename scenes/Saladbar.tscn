@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://1u65b6vk77rq"]
+
+[ext_resource type="Script" path="res://scripts/Saladbar.gd" id="1_pyjxx"]
+[ext_resource type="PackedScene" uid="uid://pnosbpqgxf3x" path="res://scenes/SaladDish.tscn" id="2_0y4bk"]
+[ext_resource type="Texture2D" uid="uid://vdwjssl7w0m6" path="res://assets/misc/Saladbar.png" id="3_1uk6k"]
+[ext_resource type="Texture2D" uid="uid://cvah1potqhmnp" path="res://assets/misc/SaladDish.png" id="4_ank7p"]
+[ext_resource type="AudioStream" uid="uid://cg63itmi6hbqh" path="res://assets/sounds/timer_9sec.mp3" id="4_w1tlc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rck0p"]
+size = Vector2(106, 122)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4cod8"]
+size = Vector2(99, 117)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_pyjxx")
+SaladDishScene = ExtResource("2_0y4bk")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_rck0p")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_4cod8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 7)
+scale = Vector2(0.154167, 0.154167)
+texture = ExtResource("3_1uk6k")
+
+[node name="CookTimer" type="TextureProgressBar" parent="."]
+offset_left = -26.0
+offset_top = -126.0
+offset_right = 38.0
+offset_bottom = -62.0
+fill_mode = 4
+texture_progress = ExtResource("4_ank7p")
+radial_center_offset = Vector2(2, 3.5)
+
+[node name="CookSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_w1tlc")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -56.0
+offset_top = -115.0
+offset_right = 49.0
+offset_bottom = -60.0
+theme_override_font_sizes/font_size = 30
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

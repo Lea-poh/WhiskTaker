@@ -5,13 +5,12 @@ extends Node2D
 func _ready():
 	pass # Replace with function body.
 
-@export var EggDishScene: PackedScene
 @onready var spawn_points_container = $DishSpawnPoints
 
-func spawn_dish():
+func spawn_dish(dish_scene: PackedScene) -> void:
 	var free_spawn_points = []
 	for spawn_point in spawn_points_container.get_children():
-		if not spawn_point.has_meta("occupied") or spawn_point.get_meta("occupied") == false:
+		if not spawn_point.get_meta("occupied", false):
 			free_spawn_points.append(spawn_point)
 			
 	if free_spawn_points.size() == 0:
@@ -23,15 +22,25 @@ func spawn_dish():
 	# Mark as occupied
 	spawn_point.set_meta("occupied", true)
 	
+	var dish = dish_scene.instantiate()
+	dish.name = spawn_point.name
 	
-	var dish = EggDishScene.instantiate()
-	dish.name = spawn_point.name  # Give each dish a useful name
-	dish.set_spawn_point_name(spawn_point.name)
+	#get dish type
+	if dish_scene.resource_path.find("Egg") != -1:
+		dish.dish_type = "egg"
+	elif dish_scene.resource_path.find("Salad") != -1:
+		dish.dish_type = "salad"
+	else:
+		dish.dish_type = "unknown"
+	
+	if dish.has_method("set_spawn_point_name"):
+		dish.set_spawn_point_name(spawn_point.name)
+	
 	spawn_point.add_child(dish)
-	dish.global_position = spawn_point.global_position
+	dish.position = Vector2.ZERO  # Local to the spawn point
 	
 	dish.connect("dish_removed", Callable(self, "_on_dish_removed"))
-	#print("Connected dish_removed signal for:", dish.name)
+
 
 
 
